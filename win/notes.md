@@ -20,11 +20,10 @@ int CALLBACK WinMain(
 ```
 
 ### Parameters
-hInstance: A handle to the current instance of the application
-hPrevInstance: A handle to the previous instance of the application. This parameter is always _NULL_.
-lpCmdLine: The command line for the application, excluding the program name. To retrieve the entire command line, use the  
-[GetCommandLine](https://msdn.microsoft.com/en-us/library/windows/desktop/ms683156.aspx) function.  
-nCmdShow: Controls how the window is to be shown.
+`hInstance`: A handle to the current instance of the application  
+`hPrevInstance`: A handle to the previous instance of the application. This parameter is always _NULL_.  
+`lpCmdLine`: The command line for the application, excluding the program name. To retrieve the entire command line, use the [GetCommandLine](https://msdn.microsoft.com/en-us/library/windows/desktop/ms683156.aspx) function.  
+`nCmdShow`: Controls how the window is to be shown.
 
 ### Return value
 If the function terminates before the message loop, it should return zero.
