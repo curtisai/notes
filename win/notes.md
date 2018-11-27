@@ -20,10 +20,11 @@ int CALLBACK WinMain(
 ```
 
 ### Parameters
-`hInstance`: A handle to the current instance of the application  
-`hPrevInstance`: A handle to the previous instance of the application. This parameter is always _NULL_.  
-`lpCmdLine`: The command line for the application, excluding the program name. To retrieve the entire command line, use the [GetCommandLine](https://msdn.microsoft.com/en-us/library/windows/desktop/ms683156.aspx) function.  
-`nCmdShow`: Controls how the window is to be shown.
+hInstance: A handle to the current instance of the application
+hPrevInstance: A handle to the previous instance of the application. This parameter is always _NULL_.
+lpCmdLine: The command line for the application, excluding the program name. To retrieve the entire command line, use the  
+[GetCommandLine](https://msdn.microsoft.com/en-us/library/windows/desktop/ms683156.aspx) function.  
+nCmdShow: Controls how the window is to be shown.
 
 ### Return value
 If the function terminates before the message loop, it should return zero.
@@ -280,21 +281,11 @@ dir /s file_name.ext
 ## [Further Reading: Manage Virtual Memory](https://msdn.microsoft.com/en-us/library/ms810627.aspx)
 ![Win32 Memory Management](Win32_Memory_Management.gif)
 
-| **Memory Set** |
-| Vertual memory functions |
-| **System Resource Affected** |
-| A process' virtual address space |
-| System pagefile |
-| System memory |
-| Hard disk space |
-| **Memory set** |
-| Memory-mapped file functions |
-| **System Resource Affected** |
-| A process' virtual address space |
-| System pagefile |
-| Standard file I/O |
-| System memory |
-| Hard disk space |
+
+| **Memory Set** | **System Resource Affected** |
+|-|-|
+| Vertual memory functions | A process' virtual address space<br>System pagefile<br>System memory<br>Hard disk space |
+| Memory-mapped file functions | A process' virtual address space<br>System pagefile<br>Standard file I/O<br>System memory<br>Hard disk space |
 
 
 ## [Window Notification](https://msdn.microsoft.com/en-us/library/windows/desktop/ff468922.aspx)
@@ -334,30 +325,32 @@ dir /s file_name.ext
 | WM_WINDOWPOSCHANGED | 0x0047 | Sent to a window whose size, position, or place in the Z order has changed as a result of a call to the [SetWindowPos] function or another window-management function. |
 | WM_WINDOWPOSCHANGING | 0x0046 | Sent to a window whose size, position, or place in the Z order is about to change as a result of a call to the [SetWindowPos] function or another window-management function. |
 
-## Message list when an app starts (Based on Day6 code)
-0x00000024  WM_GETMINMAXINFO  
-0x00000081  WM_NCCREATE  
-0x00000083  WM_NCCALCSIZE  
-0x00000001  WM_CREATE  
-0x00000018  WM_SHOWWINDOW  
-0x00000046  WM_WINDOWPOSCHANGING  
-0x00000086  N/A  
-0x0000007f  N/A  
-0x00000006  N/A  
-0x00000281  N/A  
-0x00000282  N/A  
-0x00000007  N/A  
-0x00000085  N/A  
-0x00000014  N/A  
-0x00000047  WM_WINDOWPOSCHANGED  
-0x00000005  WM_SIZE  
-0x00000003  WM_MOVE  
-0x0000007f  N/A  
-0x00000088  N/A  
-0x0000007f  N/A  
-0x0000031f  N/A  
-0x0000007f  N/A  
-0x0000c12d  N/A  
+## Message list when an app starts (Based on my test code)
+|code|description|
+|-|-|
+|0x00000024|  WM_GETMINMAXINFO  
+|0x00000081|  WM_NCCREATE  
+|0x00000083|  WM_NCCALCSIZE  
+|0x00000001|  WM_CREATE  
+|0x00000018|  WM_SHOWWINDOW  
+|0x00000046|  WM_WINDOWPOSCHANGING  
+|0x00000086|  N/A  
+|0x0000007f|  N/A  
+|0x00000006|  N/A  
+|0x00000281|  N/A  
+|0x00000282|  N/A  
+|0x00000007|  N/A  
+|0x00000085|  N/A  
+|0x00000014|  N/A  
+|0x00000047|  WM_WINDOWPOSCHANGED  
+|0x00000005|  WM_SIZE  
+|0x00000003|  WM_MOVE  
+|0x0000007f|  N/A  
+|0x00000088|  N/A  
+|0x0000007f|  N/A  
+|0x0000031f|  N/A  
+|0x0000007f|  N/A  
+|0x0000c12d|  N/A  
 
 ## [DirectSoundCreate]
 ```
@@ -369,11 +362,9 @@ HRESULT WINAPI DirectSoundCreate(
 ```
 
 ### Parameters
-_lpGuid_ : Addres of the GUID that identifies the sound device. The value of this parameter must be one of the
-GUIDs return by [DirectSoundEnumerate] or **NULL** for the default  
-device. 
-_ppDS_ : Address of a pointer to a DirectSound object created in response to this function.
-_pUnkOuter_ : Controlling unknown of the aggregate. Its value must be NULL.
+`lpGuid` : Addres of the GUID that identifies the sound device. The value of this parameter must be one of the GUIDs return by [DirectSoundEnumerate] or `NULL` for the default device.  
+`ppDS` : Address of a pointer to a **DirectSound** object created in response to this function.
+`pUnkOuter` : Controlling unknown of the aggregate. Its value must be `NULL`.
 
 ### Return Value
 If the function succeeds, the return value is _DS\_OK_
@@ -386,10 +377,10 @@ If the function fails, the return value may be one of the following error values
 |DSERR_NODRIVER|
 |DSERR_OUTOFMEMORY|
 ### Remarks
-The application must call the `IDirectSound::SetCooperativeLevel` method immediately after creating a _DirectSound_ object.
+The application must call the `IDirectSound::SetCooperativeLevel` method immediately after creating a `DirectSound` object.
 
 ### HRESULT
-The _HRESULT_ is a data type used in Windows operating systems, and the earlier IBM/Microsfot OS/2 operating system, to present error conditions, and
+The `HRESULT` is a data type used in Windows operating systems, and the earlier IBM/Microsfot OS/2 operating system, to present error conditions, and
 warning conditions.  
 It has 32 bits divided into three fields: a severity code, a facility code, and an error code.
 Using [`SUCCEEDED`] macro to verify the result
