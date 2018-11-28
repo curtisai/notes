@@ -20,11 +20,11 @@ int CALLBACK WinMain(
 ```
 
 ### Parameters
-hInstance: A handle to the current instance of the application
-hPrevInstance: A handle to the previous instance of the application. This parameter is always _NULL_.
-lpCmdLine: The command line for the application, excluding the program name. To retrieve the entire command line, use the  
-[GetCommandLine](https://msdn.microsoft.com/en-us/library/windows/desktop/ms683156.aspx) function.  
-nCmdShow: Controls how the window is to be shown.
+`hInstance`: A handle to the current instance of the application  
+`hPrevInstance`: A handle to the previous instance of the application. This parameter is always `NULL`.  
+`lpCmdLine`: The command line for the application, excluding the program name. To retrieve the entire command line, use the  
+[GetCommandLine](https://msdn.microsoft.com/en-us/library/windows/desktop/ms683156.aspx) function.   
+`nCmdShow`: Controls how the window is to be shown.
 
 ### Return value
 If the function terminates before the message loop, it should return zero.
@@ -35,16 +35,16 @@ If the function terminates before the message loop, it should return zero.
 Contains the window class attributes that are registered by the _RegisterClass_ function
 
 ### Members
-1. style: the class style/styles. This member can be any combination of the Class style.
-2. lpfnWndProc: A pointer to the window procedure. You must use the CallWindowProc function to call the window procedure.
-3. cbClsExtra: The number of extra bytes to allocate following the window-class structure. The system initializes the bytes to zero.
-4. cbWndExtra: The number of extra bytes to allocate following the window instance. The system initializes the bytes to zero.
-5. hInstance: A handle to the instance that contains the window procedure for the class.
-6. hIcon: A handle to the class icon. This member must be a handle to an icon resource. If this member is NULL, the system provides a default icon.
-7. hCursor: A handle to the class cursor. This member must be a handle to a cursor resource. If this member is NULL, an application must explicitly set the cursor shape whenever the mouse moves into the application's window.
-8. hbrBackground: A handle to the class background brush. This member can be a handle tot the physical brush to be used for painting the background, or it can be a color value.
-9. lpszMenuName: The resource name of the class menu, as the name appears in the resource file.
-10. lpszClassName: A pointer to a null-terminated string or is an atom.
+1. `style`: the class style/styles. This member can be any combination of the Class style.
+2. `lpfnWndProc`: A pointer to the window procedure. You must use the CallWindowProc function to call the window procedure.
+3. `cbClsExtra`: The number of extra bytes to allocate following the window-class structure. The system initializes the bytes to zero.
+4. `cbWndExtra`: The number of extra bytes to allocate following the window instance. The system initializes the bytes to zero.
+5. `hInstance`: A handle to the instance that contains the window procedure for the class.
+6. `hIcon`: A handle to the class icon. This member must be a handle to an icon resource. If this member is NULL, the system provides a default icon.
+7. `hCursor`: A handle to the class cursor. This member must be a handle to a cursor resource. If this member is NULL, an application must explicitly set the cursor shape whenever the mouse moves into the application's window.
+8. `hbrBackground`: A handle to the class background brush. This member can be a handle tot the physical brush to be used for painting the background, or it can be a color value.
+9. `lpszMenuName`: The resource name of the class menu, as the name appears in the resource file.
+10. `lpszClassName`: A pointer to a null-terminated string or is an atom.
 
 ---------
 
@@ -55,10 +55,10 @@ ATOM WINAPI RegisterClass(
 );
 ```
 ### Parameters
-lpWndClass: A pointer to a WNDCLASS structure. You must fill the structure with the appropriate class attributes before passing it to the function.
+`lpWndClass`: A pointer to a WNDCLASS structure. You must fill the structure with the appropriate class attributes before passing it to the function.
 
 ### Return Value
-If the function succeeds, the return value is a class atom that uniquely indentifies the class being registered.
+If the function succeeds, the return value is a class atom that uniquely indentifies the class being registered.  
 If the function fails, the return value is zero.
 
 _NOTE_:
@@ -87,22 +87,22 @@ HWND WINAPI CreateWindowEx(
 );
 ```
 ### Parameters
-dwExStyle: The extended window style of the window being created.
-lpClassName: A null-terminated string or a class [atom](https://stackoverflow.com/questions/10525511/what-is-the-atom-data-type) created by a previous call to the RegisterClass or registerClassEx function. The atom must be in the lower-order word of lpClassName; the high-order word must be zero.
-lpWindowName: The window name.
-dwStyle: The style of the window being created.
-x: The initial horizontal position of the window.
-y: The initial vertical position of the window.
-nWidth: The width, in device units, of the window.
-nHeight: The height, in device units, of the window.
-hWndParent: A handle to the parent or owner window of the window being created.
-hMenu: A handle to a menu, or specifies a child-window identifier depending on the window style.
-hInstance: A handle to the instance of the module to be associated with the window.
-lpParam: A pointer to a value to be passed to the window through the `CREATESTRUCT` structure pointed to be the _lParam_ param of the `WM\_CREATE`
+`dwExStyle`: The extended window style of the window being created.  
+`lpClassName`: A null-terminated string or a class [atom](https://stackoverflow.com/questions/10525511/what-is-the-atom-data-type) created by a previous call to the RegisterClass or registerClassEx function. The atom must be in the lower-order word of lpClassName; the high-order word must be zero.
+`lpWindowName`: The window name.  
+`dwStyle`: The style of the window being created.  
+`x`: The initial horizontal position of the window.  
+`y`: The initial vertical position of the window.  
+`nWidth`: The width, in device units, of the window.  
+`nHeight`: The height, in device units, of the window.  
+`hWndParent`: A handle to the parent or owner window of the window being created.  
+`hMenu`: A handle to a menu, or specifies a child-window identifier depending on the window style.  
+`hInstance`: A handle to the instance of the module to be associated with the window.  
+`lpParam`: A pointer to a value to be passed to the window through the `CREATESTRUCT` structure pointed to be the _lParam_ param of the `WM\_CREATE`  
 
 ### Return Value
-If the function succeeds, the return value is a handle to the new window.
-If the function fails, the return value if NULL.
+If the function succeeds, the return value is a handle to the new window.  
+If the function fails, the return value if `NULL`.
 
 ---------
 
@@ -119,12 +119,12 @@ typedef struct tagMSG {
 ```
 
 ### Memebers
-hwnd: A handle to the window whose window procedure receives the message. This member is NULL when the message is a thread message.
-message: The message identifier. Applications can only use the low word; the high word is reserved by the system.
-mParam: Additional information about the message. The exact meaning depends on the value of the `message` member.
-lParam: Additional information about the message. The exact meaning depends on the value of the `message` member.
-time: The time at which the message was posted.
-pt: The cursor position, in screen coordinates, when the message was posted.
+`hwnd`: A handle to the window whose window procedure receives the message. This member is `NULL` when the message is a thread message.  
+`message`: The message identifier. Applications can only use the low word; the high word is reserved by the system.  
+`mParam`: Additional information about the message. The exact meaning depends on the value of the `message` member.  
+`lParam`: Additional information about the message. The exact meaning depends on the value of the `message` member.  
+`time`: The time at which the message was posted.  
+`pt`: The cursor position, in screen coordinates, when the message was posted.
 
 ---------
 
@@ -139,7 +139,7 @@ BOOL WINAPI PeekMessage(
 );
 ```
 Dispatches incoming sent messages, checks the thread message queue for a posted message,
-and retrieves the message if any exist.
+and retrieves the message if any exist.  
 If a message is available, the return value is nonzero, otherwise, the return value is zero.
 
 ## [TranslateMessage](https://msdn.microsoft.com/en-us/library/windows/desktop/ms644955.aspx)
@@ -150,7 +150,7 @@ BOOL WINAPI TranslateMessage(
 ```
 Translates [virtual-key](https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731.aspx) message into charactor messages. The character messages are posted to the calling thred's message queue, to be read the next time the thread calls the `GetMessage` or `PeekMessage` function.
 ### Parameters
-lpMsg: A pointer to an MSG structure that contains message information retrieved from the calling thread's message queue by using the `GetMessage` or `PeekMessage` function.
+`lpMsg`: A pointer to an MSG structure that contains message information retrieved from the calling thread's message queue by using the `GetMessage` or `PeekMessage` function.
 
 ## [DispatchMessage](https://msdn.microsoft.com/en-us/library/windows/desktop/ms644934.aspx)
 Dispatches a message to a window procedure. It is typically used to dispatch a message retrieved by the **GetMessage** function.
@@ -180,7 +180,7 @@ Retrives a handle to a device context (DC) for the client area of a specified wi
 You can use the returned handle in subsequent GDI functions to draw in the DC.
 
 ### Parameters
-hWnd: A handle to the window whose DC is to be retrieved. If this value is **NULL**, _GetDC_ retrieves the DC for the entire screen.
+`hWnd`: A handle to the window whose DC is to be retrieved. If this value is `NULL`, _GetDC_ retrieves the DC for the entire screen.
 
 ------------
 
@@ -410,3 +410,11 @@ Creates a `DirectSoundBuffer` object to hold a sequence of audio samples.
 [SetWindowPos]:https://msdn.microsoft.com/en-us/library/windows/desktop/ms633545.aspx
 [PostQuitMessage]:https://msdn.microsoft.com/en-us/library/windows/desktop/ms644945.aspx
 [WM_QUIT]:https://msdn.microsoft.com/en-us/library/windows/desktop/ms644936.aspx
+
+---------------------------------------
+
+## [__rdtsc](https://docs.microsoft.com/en-us/cpp/intrinsics/rdtsc?view=vs-2017)
+Generates the `rdtsc` instruction, which returns the processor time stamp. The processor time stamp records the number of clock cycles since the last reset.  
+Can be used for profiling, but not as accurate:
+1. OS might swap out your code and move it back in, which influence the accuracy.
+2. Cycles != Instructions
